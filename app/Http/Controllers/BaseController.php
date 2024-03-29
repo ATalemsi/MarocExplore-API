@@ -1,10 +1,22 @@
 <?php
+/**
+ * @OA\Info(
+ *     title="User API",
+ *     version="1.0.0",
+ *     description="API for managing users",
+ *     @OA\Contact(
+ *         email="mohamadtalemsi@gmail.com"
+ *     ),
+ *     @OA\License(
+ *         name="abdellah talemsi",
+ *         url="https://opensource.org/licenses/MIT"
+ *     )
+ * )
+ */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {

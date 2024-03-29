@@ -1,8 +1,21 @@
 <?php
+/**
+ * @OA\Info(
+ *     title="User API",
+ *     version="1.0.0",
+ *     description="API for managing users",
+ *     @OA\Contact(
+ *         email="mohamadtalemsi@gmail.com"
+ *     ),
+ *     @OA\License(
+ *         name="abdellah talemsi",
+ *         url="https://opensource.org/licenses/MIT"
+ *     )
+ * )
+ */
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreDestinationRequest;
 use App\Http\Requests\UpdateDestinationRequest;
 use App\Models\Destination;
 use App\Models\Itinerary;
@@ -30,6 +43,70 @@ class DestinationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    /**
+     * Store destinations for an itinerary.
+     *
+     * @OA\Post(
+     *     path="/api/itineraries/{itineraryId}/destinations",
+     *     summary="Store destinations for an itinerary",
+     *     tags={"Itineraries"},
+     *     security={{"sanctum": {}}},
+     *     @OA\Parameter(
+     *         name="itineraryId",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the itinerary to which destinations will be added",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 required={"destinations"},
+     *                 @OA\Property(
+     *                     property="destinations",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         @OA\Property(property="name", type="string"),
+     *                         @OA\Property(property="accommodation", type="string"),
+     *                         @OA\Property(
+     *                             property="places_to_visit",
+     *                             type="array",
+     *                             @OA\Items(type="string")
+     *                         )
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Destinations added successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Unauthorized")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="errors", type="object")
+     *         )
+     *     )
+     * )
+     */
+
     public function store(Request $request , $itiniraireId)
     {
         if (!auth()->check()) {

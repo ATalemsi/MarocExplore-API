@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\VisitController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ Route::controller(RegisterController::class)->group(function()
 {
     Route::post('register', 'register');
     Route::post('login', 'login');
-
+    Route::post('logout', 'logout');
 });
 
 /** -----------Users --------------------- */
