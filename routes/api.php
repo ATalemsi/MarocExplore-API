@@ -38,7 +38,7 @@ Route::middleware('auth:sanctum')->post('/itineraries', [ItineraryController::cl
 Route::middleware('auth:sanctum')->post('itineraries/{itineraries}/destinations', [DestinationController::class ,'store']);
 Route::middleware('auth:sanctum')->put('/update/{itineraries}', [ItineraryController::class,'update']);
 Route::middleware('auth:sanctum')->post('/visits', [VisitController::class, 'store']);
-Route::middleware('auth:sanctum')->get('/itineraries/all', [ItineraryController::class, 'index']);
+Route::get('/itineraries/all', [ItineraryController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/itineraries/searchcategory', [ItineraryController::class, 'searchByCategory']);
 Route::middleware('auth:sanctum')->get('/itineraries/searchduration', [ItineraryController::class, 'searchByDuration']);
 
